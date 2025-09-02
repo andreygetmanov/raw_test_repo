@@ -6,12 +6,24 @@ from vending_machine import Sys, SysErr
 
 
 def main():
+    """
+    Executes a sequence of actions showcasing initialization, item management, and transaction handling in an automated retail system. This method sets up the system, populates it with products, displays inventory, processes fund insertion, completes a purchase, updates inventory, and manages operational exceptions.
+
+    Args:
+        None
+
+    Returns:
+        None: The function prints outputs and status updates to the console for demonstration purposes.
+
+    Why:
+        This method provides a comprehensive walkthrough of key system operations to validate component interactions and demonstrate typical usage and error handling scenarios.
+    """
     s = Sys()
     items = [Item(code='D1', label='Drink1', val=1.5, count=10, grp='d',
-        exp=datetime.now() + timedelta(days=90)), Item(code='S1', label=
-        'Snack1', val=1.0, count=15, grp='s', exp=datetime.now() +
-        timedelta(days=30)), Item(code='S2', label='Snack2', val=2.0, count
-        =8, grp='s', exp=datetime.now() + timedelta(days=60))]
+                  exp=datetime.now() + timedelta(days=90)), Item(code='S1', label=
+    'Snack1', val=1.0, count=15, grp='s', exp=datetime.now() +
+                                              timedelta(days=30)), Item(code='S2', label='Snack2', val=2.0, count
+    =8, grp='s', exp=datetime.now() + timedelta(days=60))]
     for i, item in enumerate(items):
         s.store.put(item, i)
     try:
@@ -29,7 +41,7 @@ def main():
         for pos, item in s.ls():
             print(
                 f'Pos {pos}: {item.label} - ${item.val:.2f} (Count: {item.count})'
-                )
+            )
     except SysErr as e:
         print(f'Err: {str(e)}')
 
